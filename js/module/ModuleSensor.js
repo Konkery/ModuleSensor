@@ -29,14 +29,6 @@ class ClassAncestorSensor {
      * @param {SensorOptsType} _opts - объект который содержит минимальный набор параметров, необходимых для обеспечения работы датчика
      */
     constructor(_opts, _sensor_props) { 
-        // Process.GetDevicesConfig()[_sensor_props.id] = 
-        if (_opts.pins) _opts.pins.forEach(pin => {
-            if (!(+Pin(pin))) throw new Error('Not a pin');
-        });
-        
-        if (!SensorManager.IsIDUnique(_sensor_props.id)) throw new Error('Id is already used');
-        if (_opts.pins && !SensorManager.ArePinsAvailable(_opts.pins)) throw new Error('Pins are already used');
-
         this._Bus = _opts.bus;
         this._Pins = _opts.pins || [];
         if (typeof _opts.address == 'number') this._Address = _opts.address;
